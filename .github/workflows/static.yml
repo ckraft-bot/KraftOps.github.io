@@ -36,7 +36,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Ensure CNAME file exists
-        run: echo "kraftops.com" > CNAME
+        run: echo "kraftops.com." > CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
