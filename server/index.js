@@ -5,6 +5,8 @@ const nodemailer = require('nodemailer');
 const app = express();
 const port = 3000;
 
+require('dotenv').config();  // Load environment variables
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -17,8 +19,8 @@ app.post('/contact', (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'your-email@gmail.com',
-            pass: 'your-email-password',
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
         }
     });
 
