@@ -1,31 +1,25 @@
-const express = require('express');
-const sendEmail = require('../utils/mailer');  // Import the sendEmail function
-const router = express.Router();
+const nodemailer = require('nodemailer');
 
-// Contact form route
-router.post('/contact', async (req, res) => {
-    const { name, email, message } = req.body;
+const sendEmail = async (from, to, subject, text) => {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+        },
+    });
 
-    // Basic validation (you can expand this as needed)
-    if (!name || !email || !message) {
-        return res.status(400).send('All fields are required.');
-    }
+    const mailOptions = {
+        from,
+        to,
+        subject,
+        text,
+    };
 
-    // Create email content
-    const subject = `New Inquiry from ${name}`;
-    const text = `You have received a new message:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+    return transporter.sendMail(mailOptions);
+};
 
-    try {
-        // Send the email using the sendEmail function from mailer.js
-        const emailInfo = await sendEmail(email, 'your-receiving-email@example.com', subject, text);
-        
-        // Respond to the client
-        res.status(200).send('Message sent successfully!');
-    } catch (error) {
-        // Handle any errors
-        console.error('Error sending email:', error);
-        res.status(500).send('Error occurred: ' + error.message);
-    }
-});
+module.exports = sendEmail;
 
-module.exports = router;
+console.log('Request body:', req.body); // Log the incoming request
+console.log('Sending email with subject:', subject); // Log email details
