@@ -1,0 +1,16 @@
+# Ignore the .env file that contains sensitive information
+.env
+
+# Ignore node_modules (if you're using Node.js)
+node_modules/
+
+# Ignore logs
+*.log
+
+# Ignore other common folders and files
+.DS_Store    # macOS file
+Thumbs.db    # Windows thumbnail cache
+
+# Ignore build directories
+/dist
+/build
