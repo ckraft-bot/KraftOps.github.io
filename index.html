@@ -11,6 +11,76 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
+		<!-- Review Carousel Styles -->
+		<style>
+			.review-carousel {
+				position: relative;
+				margin: 2em 0;
+			}
+			
+			.review-container {
+				position: relative;
+				min-height: 300px;
+			}
+			
+			.review-card {
+				display: none;
+				animation: fadeIn 0.5s;
+			}
+			
+			.review-card.active {
+				display: block;
+			}
+			
+			@keyframes fadeIn {
+				from { opacity: 0; }
+				to { opacity: 1; }
+			}
+			
+			.review-navigation {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 2em;
+				margin-top: 2em;
+			}
+			
+			.review-prev, .review-next {
+				background: rgba(255, 255, 255, 0.1);
+				border: 2px solid rgba(255, 255, 255, 0.3);
+				color: #ffffff;
+				padding: 0.5em 1em;
+				cursor: pointer;
+				font-size: 1.2em;
+				transition: all 0.3s;
+				border-radius: 4px;
+			}
+			
+			.review-prev:hover, .review-next:hover {
+				background: rgba(255, 255, 255, 0.2);
+				border-color: rgba(255, 255, 255, 0.5);
+			}
+			
+			.review-dots {
+				display: flex;
+				gap: 0.5em;
+			}
+			
+			.dot {
+				height: 12px;
+				width: 12px;
+				background-color: rgba(255, 255, 255, 0.3);
+				border-radius: 50%;
+				display: inline-block;
+				cursor: pointer;
+				transition: background-color 0.3s;
+			}
+			
+			.dot.active, .dot:hover {
+				background-color: rgba(255, 255, 255, 0.8);
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -84,7 +154,7 @@
 					<span class="image main"><img src="images/pic03.jpg" alt="a portrait of an Asian women in a blue button down smiling" /></span>
 					<p>
 						Claire has worked in over ten different jobs since high school, holding roles ranging from grocery bagger to barista to janitor and beyond. 
-						She is currently a software engineer at one of the nation’s largest healthcare organizations. 
+						She is currently a software engineer at one of the nation's largest healthcare organizations. 
 						With these diverse experiences, Claire understands the challenges neurodivergent individuals face in securing and maintaining employment. 
 						Now, she is ready to guide you through the process with firsthand knowledge and expertise.
 					</p>
@@ -94,12 +164,43 @@
 				<article id="reviews">
 					<h2 class="major">Reviews</h2>
 					<span class="image main"><img src="images/pic04.jpg" alt="AI generated photo of customer reviews" /></span>
-					<blockquote>
-						<p>I just finished a callback and have already received multiple responses to my resume — a complete 180° change from before! A mutual friend who also worked with Claire got a job offer already. Working with Claire has been wonderful from first contact to final delivery. 😊</p>
-						<p>She's thoughtful, attentive, and genuinely invested in helping you succeed. The suggestions she offered completely transformed my resume — and my results show it. What stood out most was how natural the process felt, like talking with a supportive mentor who truly cares about your growth.</p>
-						<p>If you're looking for someone who listens, understands your goals, and helps you present your best self with clarity and confidence, I highly recommend Claire!</p>
-						<footer>— Robert</footer>
-					</blockquote>
+					
+					<div class="review-carousel">
+						<div class="review-container">
+							<div class="review-card active">
+								<blockquote>
+									<p>I just finished a callback and have already received multiple responses to my resume — a complete 180° change from before! A mutual friend who also worked with Claire got a job offer already. Working with Claire has been wonderful from first contact to final delivery. 😊</p>
+									<p>She's thoughtful, attentive, and genuinely invested in helping you succeed. The suggestions she offered completely transformed my resume — and my results show it. What stood out most was how natural the process felt, like talking with a supportive mentor who truly cares about your growth.</p>
+									<p>If you're looking for someone who listens, understands your goals, and helps you present your best self with clarity and confidence, I highly recommend Claire!</p>
+									<footer>— Robert</footer>
+								</blockquote>
+							</div>
+							
+							<div class="review-card">
+								<blockquote>
+									<p>Add your second review here!</p>
+									<footer>— Person 2</footer>
+								</blockquote>
+							</div>
+							
+							<div class="review-card">
+								<blockquote>
+									<p>Add your third review here!</p>
+									<footer>— Person 3</footer>
+								</blockquote>
+							</div>
+						</div>
+						
+						<div class="review-navigation">
+							<button class="review-prev" onclick="changeReview(-1)">❮</button>
+							<div class="review-dots">
+								<span class="dot active" onclick="showReview(0)"></span>
+								<span class="dot" onclick="showReview(1)"></span>
+								<span class="dot" onclick="showReview(2)"></span>
+							</div>
+							<button class="review-next" onclick="changeReview(1)">❯</button>
+						</div>
+					</div>
 				</article>
 
 			</div>
@@ -133,6 +234,33 @@
 					});
 				});
 			});
+		</script>
+		
+		<!-- Review Carousel Script -->
+		<script>
+			let currentReview = 0;
+
+			function showReview(n) {
+				const cards = document.querySelectorAll('.review-card');
+				const dots = document.querySelectorAll('.dot');
+				
+				if (n >= cards.length) { currentReview = 0; }
+				if (n < 0) { currentReview = cards.length - 1; }
+				else { currentReview = n; }
+				
+				cards.forEach(card => card.classList.remove('active'));
+				dots.forEach(dot => dot.classList.remove('active'));
+				
+				cards[currentReview].classList.add('active');
+				dots[currentReview].classList.add('active');
+			}
+
+			function changeReview(direction) {
+				showReview(currentReview + direction);
+			}
+
+			// Optional: Auto-advance reviews every 8 seconds
+			// setInterval(() => changeReview(1), 8000);
 		</script>
 
 	</body>
