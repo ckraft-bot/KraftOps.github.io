@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <!--
 	Kraft Ops LLC 
 	html5up.net | @ajlkn
@@ -137,6 +137,81 @@
 				padding: 0.3em 0.9em;
 				border-radius: 1em;
 			}
+
+			/* Product cards */
+			.product-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 1.5em;
+				margin: 2em 0;
+			}
+
+			.product-card {
+				border: 2px solid rgba(255, 255, 255, 0.3);
+				border-radius: 8px;
+				padding: 1.5em;
+				background: rgba(255, 255, 255, 0.05);
+				text-align: center;
+			}
+
+			.product-card .book-cover {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				aspect-ratio: 2 / 3;
+				margin-bottom: 1em;
+				border: 2px dashed rgba(255, 255, 255, 0.4);
+				border-radius: 4px;
+				background: rgba(255, 255, 255, 0.08);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				font-size: 0.8em;
+				opacity: 0.8;
+			}
+
+			.product-card h3 {
+				margin: 0 0 0.25em 0;
+				font-size: 1.1em;
+			}
+
+			.product-card .author {
+				font-style: italic;
+				opacity: 0.8;
+				margin-bottom: 0.5em;
+			}
+
+			.product-card .price {
+				font-size: 1.6em;
+				font-weight: 600;
+			}
+
+			.product-card .qty {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.75em;
+				margin-bottom: 1em;
+			}
+
+			.product-card .qty button {
+				width: 2.2em;
+				height: 2.2em;
+				padding: 0;
+				line-height: 1;
+				cursor: pointer;
+				color: #ffffff;
+				background: rgba(255, 255, 255, 0.1);
+				border: 2px solid rgba(255, 255, 255, 0.3);
+				border-radius: 4px;
+			}
+
+			.product-card .qty button:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+
+			.product-card .qty-value {
+				min-width: 2em;
+				font-size: 1.2em;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -162,6 +237,7 @@
 						<li><a href="#home">Home</a></li>
 						<li><a href="#about">About</a></li>
 						<li><a href="#services">Services</a></li>
+						<li><a href="#products">Products</a></li>
 						<li><a href="#reviews">Reviews</a></li>
 						<li><a href="#contact">Contact</a></li>
 						<!-- <li><a href="#elements">Elements</a></li> -->
@@ -246,6 +322,39 @@
 						Now, she is ready to guide you through the process with firsthand knowledge and expertise.
 					</p>
 				</article>
+				<!-- Product -->
+				<article id="products">
+					<h2 class="major">Products</h2>
+					<div class="product-grid">
+						<div class="product-card">
+							<div class="book-cover">Book Cover<br>Placeholder</div>
+							<h3>Python Book Title</h3>
+							<p class="author">by Claire Kraft</p>
+							<p>Placeholder description for the Python book.</p>
+							<div class="price">$00.00</div>
+							<div class="qty" data-book="Python Book">
+								<button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+								<span class="qty-value">1</span>
+								<button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+							</div>
+							<button type="button" class="button">Pre Order</button>
+						</div>
+						<div class="product-card">
+							<div class="book-cover">Book Cover<br>Placeholder</div>
+							<h3>SQL Book Title</h3>
+							<p class="author">by Claire Kraft</p>
+							<p>Placeholder description for the SQL book.</p>
+							<div class="price">$00.00</div>
+							<div class="qty" data-book="SQL Book">
+								<button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+								<span class="qty-value">1</span>
+								<button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+							</div>
+							<button type="button" class="button">Pre Order</button>
+						</div>
+					</div>
+				</article>
+
 				<!-- Reviews -->
 				<article id="reviews">
 					<h2 class="major">Reviews</h2>
@@ -359,6 +468,22 @@
 
 			// Optional: Auto-advance reviews every 8 seconds
 			// setInterval(() => changeReview(1), 8000);
+		</script>
+
+		<!-- Product Quantity Script -->
+		<script>
+			document.querySelectorAll('.product-card').forEach(card => {
+				const value = card.querySelector('.qty-value');
+				let qty = 1;
+
+				function update(delta) {
+					qty = Math.max(1, qty + delta);
+					value.textContent = qty;
+				}
+
+				card.querySelector('.qty-minus').addEventListener('click', () => update(-1));
+				card.querySelector('.qty-plus').addEventListener('click', () => update(1));
+			});
 		</script>
 
 	</body>
