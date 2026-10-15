@@ -80,6 +80,63 @@
 			.dot.active, .dot:hover {
 				background-color: rgba(255, 255, 255, 0.8);
 			}
+
+			/* Service cards */
+			.service-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 1.5em;
+				margin: 2em 0;
+			}
+
+			.service-card {
+				position: relative;
+				border: 2px solid rgba(255, 255, 255, 0.3);
+				border-radius: 8px;
+				padding: 1.5em;
+				background: rgba(255, 255, 255, 0.05);
+			}
+
+			.service-card h3 {
+				margin: 0 0 0.25em 0;
+				font-size: 1.1em;
+			}
+
+			.service-card .price {
+				font-size: 1.8em;
+				font-weight: 600;
+				margin-bottom: 0.5em;
+			}
+
+			.service-card ul {
+				margin: 0;
+				padding-left: 1.2em;
+				list-style: disc;
+			}
+
+			.service-card p {
+				margin: 0;
+			}
+
+			.service-card.bundle {
+				grid-column: 1 / -1;
+				border-color: rgba(255, 255, 255, 0.8);
+				background: rgba(255, 255, 255, 0.12);
+			}
+
+			.service-card .badge {
+				position: absolute;
+				top: -0.8em;
+				right: 1em;
+				background: #ffffff;
+				color: #1b1f22;
+				font-size: 0.7em;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				padding: 0.3em 0.9em;
+				border-radius: 1em;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -103,9 +160,10 @@
 				<nav>
 					<ul>
 						<li><a href="#home">Home</a></li>
-						<li><a href="#services">Services</a></li>
 						<li><a href="#about">About</a></li>
+						<li><a href="#services">Services</a></li>
 						<li><a href="#reviews">Reviews</a></li>
+						<li><a href="#contact">Contact</a></li>
 						<!-- <li><a href="#elements">Elements</a></li> -->
 					</ul>
 				</nav>
@@ -132,23 +190,49 @@
 				<article id="services">
 					<h2 class="major">Services</h2>
 					<span class="image main"><img src="images/pic02.jpg" alt="a desk setup" /></span>
-					<ul>
-						<li>Resume Review</li>
-						<li>Mock Interview</li>
-						<li>LinkedIn Profile Setup/Optimization</li>
-						<li>Networking Strategies</li>
-					</ul>
-					<p>
-						<em>For detailed price breakdown look at the 
-                        <a href="assets/Pricing.pdf" target="_blank" rel="noopener noreferrer">service brochure (PDF)</a></em>
-                    </p>
-					<p>
-						<i class="fa fa-envelope"></i> Email Contact: 
-						<a href="mailto:kraftops25@gmail.com">kraftops25@gmail.com</a> 
-						<br>
-						<i class="fa fa-phone"></i> Phone: 
-						<a href="tel:+16298883206">+1 (629) 888-3206</a>
-					</p>
+					<div class="service-grid">
+						<div class="service-card">
+							<h3>Resume Review</h3>
+							<div class="price">$25</div>
+							<ul>
+								<li>Detailed feedback with marked-up suggestions directly on your resume</li>
+								<li>Free resume templates</li>
+								<li>Tips for structure, keywords, and tone</li>
+							</ul>
+						</div>
+						<div class="service-card">
+							<h3>Mock Interview</h3>
+							<div class="price">$50</div>
+							<ul>
+								<li>Behavioral or technical interview simulation with personalized feedback (phone or video call)</li>
+								<li>Guidance on the STAR method</li>
+								<li>Identify the 3 key points you most want to communicate (your “must-say” items)</li>
+							</ul>
+						</div>
+						<div class="service-card">
+							<h3>LinkedIn Profile Setup / Optimization</h3>
+							<div class="price">$25</div>
+							<ul>
+								<li>Step-by-step walkthrough of setting up a LinkedIn account</li>
+								<li>Guidance on optimizing your profile for visibility and professionalism</li>
+							</ul>
+						</div>
+						<div class="service-card">
+							<h3>Networking Strategies</h3>
+							<div class="price">$25</div>
+							<ul>
+								<li>Actionable tips for reaching out to professionals in your desired industry</li>
+								<li>Roadmap for finding and connecting with mentors</li>
+								<li>Ready-to-use communication templates</li>
+							</ul>
+						</div>
+						<div class="service-card bundle">
+							<span class="badge">Best Value</span>
+							<h3>Complete Package</h3>
+							<div class="price">$100</div>
+							<p>Everything: Resume Review, Mock Interview, LinkedIn Profile Setup / Optimization, and Networking Strategies.</p>
+						</div>
+					</div>
 				</article>
 
 				<!-- About -->
@@ -203,6 +287,18 @@
 							<button class="review-next" onclick="changeReview(1)">❯</button>
 						</div>
 					</div>
+				</article>
+
+				<!-- Contact -->
+				<article id="contact">
+					<h2 class="major">Contact</h2>
+					<p>
+						<i class="fa fa-envelope"></i> Email: 
+						<a href="mailto:kraftops25@gmail.com">kraftops25@gmail.com</a> 
+						<br>
+						<i class="fa fa-phone"></i> Phone: 
+						<a href="tel:+16298883206">+1 (629) 888-3206</a>
+					</p>
 				</article>
 
 			</div>
